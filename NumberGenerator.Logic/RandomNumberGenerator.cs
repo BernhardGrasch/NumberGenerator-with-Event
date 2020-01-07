@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using static NumberGenerator.Logic.IObservable;
 
 namespace NumberGenerator.Logic
 {
@@ -22,8 +23,7 @@ namespace NumberGenerator.Logic
 
         public int Delay { get; set; }
         public int Seed { get; set; }
-
-        public event EventHandler<int> NumberHandler;
+        public NextNumberHandler NumberChanged { get; set; }
 
         #endregion
 
@@ -73,7 +73,7 @@ namespace NumberGenerator.Logic
         public void NotifyObservers(int number)
         {
             Console.WriteLine($"New Number: {number}");
-            NumberHandler?.Invoke(this, number);
+            NumberChanged.Invoke(number);
         }
 
         #endregion
@@ -91,13 +91,12 @@ namespace NumberGenerator.Logic
         {
             Random random = new Random(Seed);
 
-            while(NumberHandler != null)
+            while(NumberChanged != null)
             {
                 NotifyObservers(random.Next(RANDOM_MIN_VALUE, RANDOM_MAX_VALUE));
                 Task.Delay(Delay).Wait();
             }
         }
-
         #endregion
     }
 

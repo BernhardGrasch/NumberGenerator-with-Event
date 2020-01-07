@@ -4,6 +4,8 @@ namespace NumberGenerator.Logic
 {
     public interface IObservable
     {
-        public event EventHandler<int> NumberHandler;
+        delegate void NextNumberHandler(int nextNumber);
+
+        public NextNumberHandler NumberChanged { get; set; }
     }
 }

@@ -33,7 +33,7 @@ namespace NumberGenerator.Logic
             CountOfNumbersReceived = 0;
             QuickTippNumbers = new List<int>();
 
-            numberGenerator.NumberHandler += OnNextNumber;
+            numberGenerator.NumberChanged += OnNextNumber;
             _numberGenerator = numberGenerator;
         }
 
@@ -41,7 +41,7 @@ namespace NumberGenerator.Logic
 
         #region Methods
 
-        public void OnNextNumber(object sender, int number)
+        public void OnNextNumber(int number)
         {
             CountOfNumbersReceived++;
 
@@ -65,7 +65,7 @@ namespace NumberGenerator.Logic
 
         private void DetachFromNumberGenerator()
         {
-            _numberGenerator.NumberHandler -= OnNextNumber;
+            _numberGenerator.NumberChanged -= OnNextNumber;
         }
 
         #endregion

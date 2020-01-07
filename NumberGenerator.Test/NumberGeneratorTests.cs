@@ -11,67 +11,6 @@ namespace NumberGenerator.Test
     {
         private const int SEED = 125;
 
-        //[TestMethod]
-        //[ExpectedException(typeof(ArgumentNullException))]
-        //public void NumberGenerator_AttachWithNullAsObserver_ShouldThrowArgumentNullException()
-        //{
-        //    //Arrange
-        //    RandomNumberGenerator numberGenerator = new RandomNumberGenerator();
-
-        //    //Act
-        //    numberGenerator.Attach(null);
-
-
-        //    //Assert
-        //    Assert.Fail("ArgumentNullException was expected!");
-        //}
-
-        //[TestMethod]
-        //[ExpectedException(typeof(ArgumentNullException))]
-        //public void NumberGenerator_DetachWithNullAsObserver_ShouldThrowArgumentNullException()
-        //{
-        //    //Arrange
-        //    RandomNumberGenerator numberGenerator = new RandomNumberGenerator();
-
-        //    //Act
-        //    numberGenerator.Detach(null);
-
-
-        //    //Assert
-        //    Assert.Fail("ArgumentNullException was expected!");
-        //}
-
-        //[TestMethod]
-        //[ExpectedException(typeof(InvalidOperationException))]
-        //public void NumberGenerator_ExplicitCallOfAttachASecondTime_ShouldThrowInvalidOperationException()
-        //{
-        //    //Arrange
-        //    RandomNumberGenerator numberGenerator = new RandomNumberGenerator();
-        //    BaseObserver baseObserver = new BaseObserver(numberGenerator, 5);
-
-        //    //Act
-        //    numberGenerator.Attach(baseObserver);
-
-        //    //Assert
-        //    Assert.Fail("InvalidOperationException was expected!");
-        //}
-
-        //[TestMethod]
-        //[ExpectedException(typeof(InvalidOperationException))]
-        //public void NumberGenerator_DetachCalledTwiceWithIdenticalObserver_ShouldThrowInvalidOperationException()
-        //{
-        //    //Arrange
-        //    RandomNumberGenerator numberGenerator = new RandomNumberGenerator();
-        //    BaseObserver baseObserver = new BaseObserver(numberGenerator, 5);
-
-        //    //Act
-        //    numberGenerator.Detach(baseObserver);
-        //    numberGenerator.Detach(baseObserver);
-
-        //    //Assert
-        //    Assert.Fail("InvalidOperationException was expected!");
-        //}
-
         [TestMethod]
         public void NumberGenerator_CallDetach_ShouldWork()
         {
@@ -82,7 +21,7 @@ namespace NumberGenerator.Test
             //Act
             try
             {
-                numberGenerator.NumberHandler -= baseObserver.OnNextNumber;
+                numberGenerator.NumberChanged -= baseObserver.OnNextNumber;
             }
             catch (Exception ex)
             {
